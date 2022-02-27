@@ -1,6 +1,7 @@
 package ru.itmo.banks.Services;
 
 import ru.itmo.banks.Services.Account.BankAccount;
+import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
 
@@ -46,9 +47,8 @@ public class Transaction {
         return activeCondition;
     }
 
-    public void Execute() throws IllegalOperationException, NotEnoughMoneyException
-    {
-        if (activeCondition) throw new IllegalOperationException("Already executed");
+    public void Execute() throws IllegalOperationException, NotEnoughMoneyException, AlreadyExecutedException {
+        if (activeCondition) throw new AlreadyExecutedException("Already executed");
         if (sender.getBalance() < money) throw new NotEnoughMoneyException("Not enough money for executing");
         sender.setBalance(sender.getBalance() - money);
         recipient.setBalance(recipient.getBalance() + money);

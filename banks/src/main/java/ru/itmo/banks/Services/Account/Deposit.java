@@ -3,6 +3,7 @@ package ru.itmo.banks.Services.Account;
 import ru.itmo.banks.Services.Banks.Bank;
 import ru.itmo.banks.Services.Customers.Customer;
 import ru.itmo.banks.Services.Transaction;
+import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotReliableException;
@@ -50,7 +51,7 @@ public class Deposit extends Account implements IPaymentable, ISleepDay{
         }
     }
 
-    public void SendMoney(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException {
+    public void SendMoney(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         if (!CanWork())
         {
             getCustomer().SendNotification(String.format("Too early, wait %s days", termInDays));
@@ -91,7 +92,7 @@ public class Deposit extends Account implements IPaymentable, ISleepDay{
         termInDays--;
     }
 
-    public void Payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException {
+    public void Payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(getBank().getBankAccount(), this, getVirtualBalance());
         newTransaction.Execute();
         getBank().AddTransaction(newTransaction);

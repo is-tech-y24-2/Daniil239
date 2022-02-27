@@ -1,10 +1,7 @@
 package ru.itmo.banks.Services.Banks;
 
 import ru.itmo.banks.Services.Transaction;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExistException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughInformationException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
+import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.*;
 
 import java.util.*;
 
@@ -45,13 +42,13 @@ public class CentralBank {
         return newBank;
     }
 
-    public void SendMoneyBetweenBanks(Bank sender, Bank recipient, float sum) throws NotEnoughMoneyException, IllegalOperationException {
+    public void SendMoneyBetweenBanks(Bank sender, Bank recipient, float sum) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(sender.getBankAccount(), recipient.getBankAccount(), sum);
         newTransaction.Execute();
         transactions.add(newTransaction);
     }
 
-    public void SleepDays(int days) throws NotEnoughMoneyException, IllegalOperationException {
+    public void SleepDays(int days) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
 
         for (int i = 1; i <= days; i++)
         {
@@ -66,11 +63,11 @@ public class CentralBank {
         }
     }
 
-    public void SleepMonths(int months) throws NotEnoughMoneyException, IllegalOperationException {
+    public void SleepMonths(int months) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         SleepDays(months * 30);
     }
 
-    public void SleepYears(int years) throws NotEnoughMoneyException, IllegalOperationException {
+    public void SleepYears(int years) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         SleepDays(years * 365);
     }
 }

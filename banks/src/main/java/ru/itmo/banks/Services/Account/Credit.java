@@ -3,6 +3,7 @@ package ru.itmo.banks.Services.Account;
 import ru.itmo.banks.Services.Banks.Bank;
 import ru.itmo.banks.Services.Customers.Customer;
 import ru.itmo.banks.Services.Transaction;
+import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotReliableException;
@@ -31,7 +32,7 @@ public class Credit extends Account implements IPaymentable, ISleepDay{
         }
     }
 
-    public void SendMoney(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException {
+    public void SendMoney(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         if (!this.isReliable() && (money > getBank().getNotReliableMaxTransactionMoney()))
         {
             getCustomer().SendNotification(new NotReliableException("You can not take so much money, pls fill in personal information"));
@@ -65,7 +66,7 @@ public class Credit extends Account implements IPaymentable, ISleepDay{
         if (getBalance() < 0) setVirtualBalance(getVirtualBalance() - (float)(profit / 30.0));
     }
 
-    public void Payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException {
+    public void Payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(bank.getBankAccount(), this, getVirtualBalance());
         newTransaction.Execute();
         bank.AddTransaction(newTransaction);

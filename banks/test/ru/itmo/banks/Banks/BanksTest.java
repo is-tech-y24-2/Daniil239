@@ -25,7 +25,7 @@ public class BanksTest {
     }
 
         @Test
-    public void CreditingAndDebiting_CustomerHaveCommissionAndProfitWithTime() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException {
+    public void CreditingAndDebiting_CustomerHaveCommissionAndProfitWithTime() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var centralBank = new CentralBank("central");
         Bank sber = centralBank.CreateBank("Sber", 1000000);
         Customer daniil = new CustomerBuilder().SetName("daniil").SetSecondName("alexandrov").SetAddress("isjn").GetResult();
@@ -43,7 +43,7 @@ public class BanksTest {
     }
 
         @Test
-    public void SendingALotOfMoneyIfCustomerIsReliable_MoneySendsIfReliable() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException, DoesNotExistException {
+    public void SendingALotOfMoneyIfCustomerIsReliable_MoneySendsIfReliable() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException, DoesNotExistException, AlreadyExecutedException {
         var centralBank = new CentralBank("central");
         Bank sber = centralBank.CreateBank("Sber", 1000000);
         Customer daniil = new CustomerBuilder().SetName("daniil").SetSecondName("alexandrov").SetAddress("isjn").GetResult();
@@ -63,7 +63,7 @@ public class BanksTest {
     }
 
         @Test
-    public void DepositTerm_CustomerCanWithdrawMoneyAfterDepositTerm() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException {
+    public void DepositTerm_CustomerCanWithdrawMoneyAfterDepositTerm() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var centralBank = new CentralBank("central");
         Bank sber = centralBank.CreateBank("Sber", 1000000);
         sber.SetDepositTermInDays(2);
@@ -79,7 +79,7 @@ public class BanksTest {
     }
 
         @Test
-    public void SendingMoneyBetweenBanks_MoneySends() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException {
+    public void SendingMoneyBetweenBanks_MoneySends() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var centralBank = new CentralBank("central");
         Bank sber = centralBank.CreateBank("Sber", 1000000);
         Bank tinkoff = centralBank.CreateBank("Tinkoff", 1000000);
@@ -89,7 +89,7 @@ public class BanksTest {
     }
 
         @Test
-    public void CancelTransaction_MoneyReturnsAndTransactionIsNotActive() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException {
+    public void CancelTransaction_MoneyReturnsAndTransactionIsNotActive() throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var centralBank = new CentralBank("central");
         Bank sber = centralBank.CreateBank("Sber", 1000000);
         Customer daniil = new CustomerBuilder().SetName("daniil").SetSecondName("alexandrov").SetAddress("isjn").GetResult();

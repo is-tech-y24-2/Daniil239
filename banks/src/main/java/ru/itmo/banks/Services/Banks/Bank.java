@@ -8,6 +8,7 @@ import ru.itmo.banks.Services.Account.Debit;
 import ru.itmo.banks.Services.Account.Deposit;
 import ru.itmo.banks.Services.Customers.Customer;
 import ru.itmo.banks.Services.Transaction;
+import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExistException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
@@ -105,14 +106,14 @@ public class Bank {
         }
     }
 
-    public void WithdrawMoneyFromAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException {
+    public void WithdrawMoneyFromAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(account, bankAccount, money);
         newTransaction.Execute();
         transactions.add(newTransaction);
         if (account.getBalance() < 0) account.getCustomer().SendNotification(new NotEnoughMoneyException("Negative balance"));
     }
 
-    public void PutMoneyIntoAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException {
+    public void PutMoneyIntoAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(bankAccount, account, money);
         newTransaction.Execute();
         transactions.add(newTransaction);
@@ -186,7 +187,7 @@ public class Bank {
         }
     }
 
-    public void Payments() throws NotEnoughMoneyException, IllegalOperationException {
+    public void Payments() throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         for (Credit credit : accounts.getCredits())
         {
             credit.Payments(this);
