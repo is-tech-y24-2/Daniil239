@@ -7,20 +7,23 @@ import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyExcep
 
 public class Transaction {
     private static int counterForIdCreating = 100000;
-    private float money;
-    private BankAccount sender;
-    private BankAccount recipient;
-    private int id;
+    private final float money;
+    private final BankAccount sender;
+    private final BankAccount recipient;
+    private final int id;
     private boolean activeCondition;
 
-    public Transaction(BankAccount sender, BankAccount recipient, float money)
-    {
+    public Transaction(BankAccount sender, BankAccount recipient, float money) {
         this.money = money;
         this.sender = sender;
         this.recipient = recipient;
         counterForIdCreating++;
         id = counterForIdCreating;
         activeCondition = false;
+    }
+
+    public static int getCounterForIdCreating() {
+        return counterForIdCreating;
     }
 
     public BankAccount getRecipient() {
@@ -39,15 +42,11 @@ public class Transaction {
         return id;
     }
 
-    public static int getCounterForIdCreating() {
-        return counterForIdCreating;
-    }
-
     public boolean isActiveCondition() {
         return activeCondition;
     }
 
-    public void Execute() throws IllegalOperationException, NotEnoughMoneyException, AlreadyExecutedException {
+    public void execute() throws IllegalOperationException, NotEnoughMoneyException, AlreadyExecutedException {
         if (activeCondition) throw new AlreadyExecutedException("Already executed");
         if (sender.getBalance() < money) throw new NotEnoughMoneyException("Not enough money for executing");
         sender.setBalance(sender.getBalance() - money);
@@ -55,8 +54,7 @@ public class Transaction {
         activeCondition = true;
     }
 
-    public void Cancel() throws IllegalOperationException
-    {
+    public void cancel() throws IllegalOperationException {
         if (!activeCondition) throw new IllegalOperationException("Can't cancel transaction twice");
         recipient.setBalance(recipient.getBalance() - money);
         sender.setBalance(sender.getBalance() + money);

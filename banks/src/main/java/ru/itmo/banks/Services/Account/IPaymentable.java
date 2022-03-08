@@ -6,5 +6,5 @@ import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationExc
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
 
 public interface IPaymentable {
-    void Payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException;
+    void payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException;
 }

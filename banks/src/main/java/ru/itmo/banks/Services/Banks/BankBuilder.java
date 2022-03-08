@@ -12,55 +12,47 @@ public class BankBuilder {
     private int depositTermInDays = 50;
     private int notReliableMaxTransactionMoney = 50000;
 
-    public BankBuilder SetName(String name)
-    {
+    public BankBuilder setName(String name) {
         this.name = name;
         return this;
     }
 
-    public BankBuilder SetMoney(int money)
-    {
+    public BankBuilder setMoney(int money) {
         this.money = money;
         return this;
     }
 
-    public BankBuilder SetDebitBalanceInterest(float debitBalanceInterest)
-    {
+    public BankBuilder setDebitBalanceInterest(float debitBalanceInterest) {
         this.debitBalanceInterest = debitBalanceInterest;
         return this;
     }
 
-    public BankBuilder SetDepositBalanceInterest(float depositBalanceInterest)
-    {
+    public BankBuilder setDepositBalanceInterest(float depositBalanceInterest) {
         this.depositBalanceInterest = depositBalanceInterest;
         return this;
     }
 
-    public BankBuilder SetCreditLimit(int creditLimit)
-    {
+    public BankBuilder setCreditLimit(int creditLimit) {
         this.creditLimit = creditLimit;
         return this;
     }
 
-    public BankBuilder SetCommission(int commission)
-    {
+    public BankBuilder setCommission(int commission) {
         this.commission = commission;
         return this;
     }
 
-    public BankBuilder SetDepositTermInDays(int depositTermInDays)
-    {
+    public BankBuilder setDepositTermInDays(int depositTermInDays) {
         this.depositTermInDays = depositTermInDays;
         return this;
     }
 
-    public BankBuilder SetNotReliableMaxTransactionMoney(int money)
-    {
+    public BankBuilder setNotReliableMaxTransactionMoney(int money) {
         this.notReliableMaxTransactionMoney = money;
         return this;
     }
 
-    public Bank GetResult() throws NotEnoughInformationException {
+    public Bank getResult() throws NotEnoughInformationException {
         if ((name == null) || (money == 0)) throw new NotEnoughInformationException("Name and money must be filled");
         return new Bank(name, money, debitBalanceInterest, depositBalanceInterest, creditLimit, commission, depositTermInDays, notReliableMaxTransactionMoney);
     }

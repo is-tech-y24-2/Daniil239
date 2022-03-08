@@ -3,10 +3,10 @@ package ru.itmo.banks.Services.Account;
 import ru.itmo.banks.Services.Banks.Bank;
 
 public class BankAccount {
-    private Bank bank;
+    private final Bank bank;
     private float balance;
-    public BankAccount(Bank originalBank)
-    {
+
+    public BankAccount(Bank originalBank) {
         bank = originalBank;
         balance = 0;
     }

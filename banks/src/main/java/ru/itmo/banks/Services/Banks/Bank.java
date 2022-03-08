@@ -1,11 +1,6 @@
 package ru.itmo.banks.Services.Banks;
 
-import ru.itmo.banks.Services.Account.Account;
-import ru.itmo.banks.Services.Account.AccountType;
-import ru.itmo.banks.Services.Account.BankAccount;
-import ru.itmo.banks.Services.Account.Credit;
-import ru.itmo.banks.Services.Account.Debit;
-import ru.itmo.banks.Services.Account.Deposit;
+import ru.itmo.banks.Services.Account.*;
 import ru.itmo.banks.Services.Customers.Customer;
 import ru.itmo.banks.Services.Transaction;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
@@ -13,24 +8,23 @@ import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExistExcepti
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Bank {
 
     private final AccountsInBank accounts = new AccountsInBank();
-    private BankAccount bankAccount;
-    private String name;
-    private ArrayList<Transaction> transactions;
+    private final BankAccount bankAccount;
+    private final String name;
+    private final ArrayList<Transaction> transactions;
+    private final int notReliableMaxTransactionMoney;
+    private final ArrayList<Customer> subscribers;
     private float debitBalanceInterest;
     private float depositBalanceInterest;
     private int creditLimit;
     private int commission;
     private int depositTermInDays;
-    private int notReliableMaxTransactionMoney;
-    private ArrayList<Customer> subscribers;
 
-    public Bank(String bankName, float bankMoney, float bankDebitBalanceInterest, float bankDepositBalanceInterest, int bankCreditLimit, int bankCommission, int bankDepositTermInDays, int bankNotReliableMaxTransactionMoney)
-    {
+    public Bank(String bankName, float bankMoney, float bankDebitBalanceInterest, float bankDepositBalanceInterest, int bankCreditLimit, int bankCommission, int bankDepositTermInDays, int bankNotReliableMaxTransactionMoney) {
         name = bankName;
         bankAccount = new BankAccount(this);
         bankAccount.setBalance(bankMoney);
@@ -60,12 +54,27 @@ public class Bank {
         return debitBalanceInterest;
     }
 
+    public void setDebitBalanceInterest(float newDebitBalanceInterest) {
+        debitBalanceInterest = newDebitBalanceInterest;
+        reportChanges(String.format("Debit balance interest changes on %s", debitBalanceInterest));
+    }
+
     public float getDepositBalanceInterest() {
         return depositBalanceInterest;
     }
 
+    public void setDepositBalanceInterest(float newDepositBalanceInterest) {
+        depositBalanceInterest = newDepositBalanceInterest;
+        reportChanges(String.format("Deposit balance interest changes on %s", newDepositBalanceInterest));
+    }
+
     public int getCommission() {
         return commission;
+    }
+
+    public void setCommission(int newCommission) {
+        commission = newCommission;
+        reportChanges(String.format("Commission changes on %s", newCommission));
     }
 
     public String getName() {
@@ -76,136 +85,105 @@ public class Bank {
         return creditLimit;
     }
 
+    public void setCreditLimit(int newCreditLimit) {
+        creditLimit = newCreditLimit;
+        reportChanges(String.format("Credit limit changes on %s", newCreditLimit));
+    }
+
     public int getDepositTermInDays() {
         return depositTermInDays;
+    }
+
+    public void setDepositTermInDays(int newDepositTermInDays) {
+        depositTermInDays = newDepositTermInDays;
+        reportChanges(String.format("Deposit term changes on %s days", newDepositTermInDays));
     }
 
     public int getNotReliableMaxTransactionMoney() {
         return notReliableMaxTransactionMoney;
     }
 
-    public void AddAccount(Customer customer, AccountType accountType) throws AlreadyExistException
-    {
-        switch (accountType)
-        {
+    public void addAccount(Customer customer, AccountType accountType) throws AlreadyExistException {
+        switch (accountType) {
             case Credit:
                 if (accounts.getCreditCustomers().contains(customer))
                     throw new AlreadyExistException(String.format("%s already have credit in %s", customer.getName(), name));
-                accounts.AddCredit(customer, this);
+                accounts.addCredit(customer, this);
                 break;
             case Debit:
                 if (accounts.getDebitCustomers().contains(customer))
                     throw new AlreadyExistException(String.format("%s already have debit in %s", customer.getName(), name));
-                accounts.AddDebit(customer, this);
+                accounts.addDebit(customer, this);
                 break;
             case Deposit:
                 if (accounts.getDepositCustomers().contains(customer))
                     throw new AlreadyExistException(String.format("%s already have deposit in %s", customer.getName(), name));
-                accounts.AddDeposit(customer, this);
+                accounts.addDeposit(customer, this);
                 break;
         }
     }
 
-    public void WithdrawMoneyFromAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
+    public void withdrawMoneyFromAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(account, bankAccount, money);
-        newTransaction.Execute();
+        newTransaction.execute();
         transactions.add(newTransaction);
-        if (account.getBalance() < 0) account.getCustomer().SendNotification(new NotEnoughMoneyException("Negative balance"));
+        if (account.getBalance() < 0)
+            account.getCustomer().sendNotification(new NotEnoughMoneyException("Negative balance"));
     }
 
-    public void PutMoneyIntoAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
+    public void putMoneyIntoAccount(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(bankAccount, account, money);
-        newTransaction.Execute();
+        newTransaction.execute();
         transactions.add(newTransaction);
     }
 
-    public void CancelTransaction(Transaction transaction) throws IllegalOperationException {
-        transaction.Cancel();
+    public void cancelTransaction(Transaction transaction) throws IllegalOperationException {
+        transaction.cancel();
     }
 
-    public void ReportChanges(String message)
-    {
-        for (Customer subscriber : subscribers)
-        {
-            subscriber.SendNotification(message);
+    public void reportChanges(String message) {
+        for (Customer subscriber : subscribers) {
+            subscriber.sendNotification(message);
         }
     }
 
-    public void SetDebitBalanceInterest(float newDebitBalanceInterest)
-    {
-        debitBalanceInterest = newDebitBalanceInterest;
-        ReportChanges(String.format("Debit balance interest changes on %s", debitBalanceInterest));
-    }
-
-    public void SetDepositBalanceInterest(float newDepositBalanceInterest)
-    {
-        depositBalanceInterest = newDepositBalanceInterest;
-        ReportChanges(String.format("Deposit balance interest changes on %s", newDepositBalanceInterest));
-    }
-
-    public void SetCreditLimit(int newCreditLimit)
-    {
-        creditLimit = newCreditLimit;
-        ReportChanges(String.format("Credit limit changes on %s", newCreditLimit));
-    }
-
-    public void SetCommission(int newCommission)
-    {
-        commission = newCommission;
-        ReportChanges(String.format("Commission changes on %s", newCommission));
-    }
-
-    public void SetDepositTermInDays(int newDepositTermInDays)
-    {
-        depositTermInDays = newDepositTermInDays;
-        ReportChanges(String.format("Deposit term changes on %s days", newDepositTermInDays));
-    }
-
-    public void AddSubscriber(Customer newSubscriber){
+    public void addSubscriber(Customer newSubscriber) {
         subscribers.add(newSubscriber);
     }
 
-    public void AddTransaction(Transaction newTransaction){
+    public void addTransaction(Transaction newTransaction) {
         transactions.add(newTransaction);
     }
 
-    public void SleepDay()
-    {
-        for (Credit credit : accounts.getCredits())
-        {
-            credit.SleepDay(commission);
+    public void sleepDay() {
+        for (Credit credit : accounts.getCredits()) {
+            credit.sleepDay(commission);
         }
 
-        for (Debit debit : accounts.getDebits())
-        {
-            debit.SleepDay(debitBalanceInterest);
+        for (Debit debit : accounts.getDebits()) {
+            debit.sleepDay(debitBalanceInterest);
         }
 
-        for (Deposit deposit : accounts.getDeposits())
-        {
-            deposit.SleepDay(depositBalanceInterest);
+        for (Deposit deposit : accounts.getDeposits()) {
+            deposit.sleepDay(depositBalanceInterest);
         }
     }
 
-    public void Payments() throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
-        for (Credit credit : accounts.getCredits())
-        {
-            credit.Payments(this);
+    public void payments() throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
+        for (Credit credit : accounts.getCredits()) {
+            credit.payments(this);
         }
 
-        for (Debit debit : accounts.getDebits())
-        {
-            debit.Payments(this);
+        for (Debit debit : accounts.getDebits()) {
+            debit.payments(this);
         }
 
-        for (Deposit deposit : accounts.getDeposits())
-        {
-            deposit.Payments(this);
+        for (Deposit deposit : accounts.getDeposits()) {
+            deposit.payments(this);
         }
     }
 
-    public boolean Equals(Bank other)
-    {
+    public boolean equals(Bank other) {
         return name == other.name;
     }
 }

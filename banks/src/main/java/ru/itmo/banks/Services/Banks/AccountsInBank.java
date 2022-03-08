@@ -5,17 +5,17 @@ import ru.itmo.banks.Services.Account.Debit;
 import ru.itmo.banks.Services.Account.Deposit;
 import ru.itmo.banks.Services.Customers.Customer;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class AccountsInBank {
-    private ArrayList<Customer> creditCustomers;
-    private ArrayList<Customer> debitCustomers;
-    private ArrayList<Customer> depositCustomers;
-    private ArrayList<Credit> credits;
-    private ArrayList<Debit> debits;
-    private ArrayList<Deposit> deposits;
-    public AccountsInBank()
-    {
+    private final ArrayList<Customer> creditCustomers;
+    private final ArrayList<Customer> debitCustomers;
+    private final ArrayList<Customer> depositCustomers;
+    private final ArrayList<Credit> credits;
+    private final ArrayList<Debit> debits;
+    private final ArrayList<Deposit> deposits;
+
+    public AccountsInBank() {
         credits = new ArrayList<Credit>();
         debits = new ArrayList<Debit>();
         deposits = new ArrayList<Deposit>();
@@ -48,27 +48,24 @@ public class AccountsInBank {
         return depositCustomers;
     }
 
-    public void AddCredit(Customer customer, Bank bank)
-    {
+    public void addCredit(Customer customer, Bank bank) {
         var newCredit = new Credit(customer, bank);
         credits.add(newCredit);
         creditCustomers.add(customer);
-        customer.AddCredit(newCredit);
+        customer.addCredit(newCredit);
     }
 
-    public void AddDebit(Customer customer, Bank bank)
-    {
+    public void addDebit(Customer customer, Bank bank) {
         var newDebit = new Debit(customer, bank);
         debits.add(newDebit);
         debitCustomers.add(customer);
-        customer.AddDebit(newDebit);
+        customer.addDebit(newDebit);
     }
 
-    public void AddDeposit(Customer customer, Bank bank)
-    {
+    public void addDeposit(Customer customer, Bank bank) {
         var newDeposit = new Deposit(customer, bank, bank.getDepositTermInDays());
         deposits.add(newDeposit);
         depositCustomers.add(customer);
-        customer.AddDeposit(newDeposit);
+        customer.addDeposit(newDeposit);
     }
 }

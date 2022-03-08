@@ -8,69 +8,58 @@ import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationExc
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
 import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotReliableException;
 
-public class Credit extends Account implements IPaymentable, ISleepDay{
+public class Credit extends Account implements IPaymentable, ISleepDay {
 
     public Credit(Customer customer, Bank bank) {
         super(customer, bank);
     }
 
-    public void WithdrawMoney(float money)
-    {
-        if (money > this.getBank().getNotReliableMaxTransactionMoney())
-        {
-            getCustomer().SendNotification(new NotReliableException("You can not take so much money, pls fill in personal information"));
+    public void withdrawMoney(float money) {
+        if (money > this.getBank().getNotReliableMaxTransactionMoney()) {
+            getCustomer().sendNotification(new NotReliableException("You can not take so much money, pls fill in personal information"));
             return;
         }
 
-        if (this.getBalance() - money <= -this.getBank().getCreditLimit())
-        {
-            getCustomer().SendNotification(new NotEnoughMoneyException("Credit exhausted"));
-        }
-        else
-        {
+        if (this.getBalance() - money <= -this.getBank().getCreditLimit()) {
+            getCustomer().sendNotification(new NotEnoughMoneyException("Credit exhausted"));
+        } else {
             this.setBalance(getBalance() - money);
         }
     }
 
-    public void SendMoney(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
-        if (!this.isReliable() && (money > getBank().getNotReliableMaxTransactionMoney()))
-        {
-            getCustomer().SendNotification(new NotReliableException("You can not take so much money, pls fill in personal information"));
+    public void sendMoney(Account account, float money) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
+        if (!this.isReliable() && (money > getBank().getNotReliableMaxTransactionMoney())) {
+            getCustomer().sendNotification(new NotReliableException("You can not take so much money, pls fill in personal information"));
             return;
         }
 
-        if (getBalance() - money <= -getBank().getCreditLimit())
-        {
-            getCustomer().SendNotification(new NotEnoughMoneyException("Credit exhausted"));
-        }
-        else
-        {
+        if (getBalance() - money <= -getBank().getCreditLimit()) {
+            getCustomer().sendNotification(new NotEnoughMoneyException("Credit exhausted"));
+        } else {
             var newTransaction = new Transaction(this, account, money);
-            newTransaction.Execute();
-            getBank().AddTransaction(newTransaction);
+            newTransaction.execute();
+            getBank().addTransaction(newTransaction);
         }
     }
 
-    public void PutMoney(float money)
-    {
+    public void putMoney(float money) {
         setBalance(getBalance() + money);
     }
 
-    public boolean Equals(Credit other)
-    {
+    public boolean equals(Credit other) {
         return getCustomer().equals(other.getCustomer());
     }
 
-    public void SleepDay(float profit)
-    {
-        if (getBalance() < 0) setVirtualBalance(getVirtualBalance() - (float)(profit / 30.0));
+    public void sleepDay(float profit) {
+        if (getBalance() < 0) setVirtualBalance(getVirtualBalance() - (float) (profit / 30.0));
     }
 
-    public void Payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
+    public void payments(Bank bank) throws NotEnoughMoneyException, IllegalOperationException, AlreadyExecutedException {
         var newTransaction = new Transaction(bank.getBankAccount(), this, getVirtualBalance());
-        newTransaction.Execute();
-        bank.AddTransaction(newTransaction);
+        newTransaction.execute();
+        bank.addTransaction(newTransaction);
         setVirtualBalance(0.f);
-        if (getBalance() < -bank.getCreditLimit()) getCustomer().SendNotification(new NotEnoughMoneyException("You have not money after crediting"));
+        if (getBalance() < -bank.getCreditLimit())
+            getCustomer().sendNotification(new NotEnoughMoneyException("You have not money after crediting"));
     }
 }

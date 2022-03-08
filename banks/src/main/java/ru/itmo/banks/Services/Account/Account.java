@@ -3,13 +3,12 @@ package ru.itmo.banks.Services.Account;
 import ru.itmo.banks.Services.Banks.Bank;
 import ru.itmo.banks.Services.Customers.Customer;
 
-public class Account extends BankAccount{
+public class Account extends BankAccount {
 
+    private final Customer customer;
     private float virtualBalance;
-    private Customer customer;
 
-    public Account(Customer AccountCustomer, Bank originalBank)
-    {
+    public Account(Customer AccountCustomer, Bank originalBank) {
         super(originalBank);
         customer = AccountCustomer;
         virtualBalance = 0;
@@ -27,8 +26,7 @@ public class Account extends BankAccount{
         this.virtualBalance = virtualBalance;
     }
 
-    public boolean isReliable()
-    {
+    public boolean isReliable() {
         return getCustomer().isReliable();
     }
 }
