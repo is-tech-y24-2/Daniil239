@@ -8,7 +8,7 @@ import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationExcep
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotReliableException;
 
-public class Credit extends Account implements IPaymentable, ISleepDay {
+public class Credit extends Account implements Paymentable, SleepDay {
 
     public Credit(Customer customer, Bank bank) {
         super(customer, bank);

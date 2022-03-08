@@ -8,7 +8,7 @@ import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationExcep
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotReliableException;
 
-public class Debit extends Account implements IPaymentable, ISleepDay {
+public class Debit extends Account implements Paymentable, SleepDay {
     public Debit(Customer customer, Bank bank) {
         super(customer, bank);
     }

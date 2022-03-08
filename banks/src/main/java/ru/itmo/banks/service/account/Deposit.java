@@ -8,7 +8,7 @@ import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationExcep
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotReliableException;
 
-public class Deposit extends Account implements IPaymentable, ISleepDay {
+public class Deposit extends Account implements Paymentable, SleepDay {
 
     private int termInDays;
 
