@@ -1,9 +1,9 @@
-package ru.itmo.banks.Services.Banks;
+package ru.itmo.banks.service.bank;
 
-import ru.itmo.banks.Services.Account.Credit;
-import ru.itmo.banks.Services.Account.Debit;
-import ru.itmo.banks.Services.Account.Deposit;
-import ru.itmo.banks.Services.Customers.Customer;
+import ru.itmo.banks.service.account.Credit;
+import ru.itmo.banks.service.account.Debit;
+import ru.itmo.banks.service.account.Deposit;
+import ru.itmo.banks.service.customer.Customer;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
-package ru.itmo.banks.Services.Customers;
+package ru.itmo.banks.service.customer;
 
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughInformationException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughInformationException;
 
 public class CustomerBuilder {
     private String name = null;

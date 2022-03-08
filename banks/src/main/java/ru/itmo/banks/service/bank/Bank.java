@@ -1,12 +1,12 @@
-package ru.itmo.banks.Services.Banks;
+package ru.itmo.banks.service.bank;
 
-import ru.itmo.banks.Services.Account.*;
-import ru.itmo.banks.Services.Customers.Customer;
-import ru.itmo.banks.Services.Transaction;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExistException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
+import ru.itmo.banks.service.account.*;
+import ru.itmo.banks.service.customer.Customer;
+import ru.itmo.banks.service.Transaction;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.AlreadyExecutedException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.AlreadyExistException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 
 import java.util.ArrayList;
 

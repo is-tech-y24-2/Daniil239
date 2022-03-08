@@ -1,7 +1,7 @@
-package ru.itmo.banks.Services.Banks;
+package ru.itmo.banks.service.bank;
 
-import ru.itmo.banks.Services.Transaction;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.*;
+import ru.itmo.banks.service.Transaction;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.*;
 
 import java.util.ArrayList;
 

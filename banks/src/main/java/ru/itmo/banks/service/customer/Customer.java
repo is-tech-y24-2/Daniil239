@@ -1,11 +1,11 @@
-package ru.itmo.banks.Services.Customers;
+package ru.itmo.banks.service.customer;
 
-import ru.itmo.banks.Services.Account.Credit;
-import ru.itmo.banks.Services.Account.Debit;
-import ru.itmo.banks.Services.Account.Deposit;
-import ru.itmo.banks.Services.Banks.Bank;
-import ru.itmo.banks.Tools.BankExceptions.BankException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.DoesNotExistException;
+import ru.itmo.banks.service.account.Credit;
+import ru.itmo.banks.service.account.Debit;
+import ru.itmo.banks.service.account.Deposit;
+import ru.itmo.banks.service.bank.Bank;
+import ru.itmo.banks.tool.bankException.BankException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.DoesNotExistException;
 
 import java.util.ArrayList;
 

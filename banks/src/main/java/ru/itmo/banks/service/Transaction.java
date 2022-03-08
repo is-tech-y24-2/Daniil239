@@ -1,9 +1,9 @@
-package ru.itmo.banks.Services;
+package ru.itmo.banks.service;
 
-import ru.itmo.banks.Services.Account.BankAccount;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
+import ru.itmo.banks.service.account.BankAccount;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.AlreadyExecutedException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 
 public class Transaction {
     private static int counterForIdCreating = 100000;

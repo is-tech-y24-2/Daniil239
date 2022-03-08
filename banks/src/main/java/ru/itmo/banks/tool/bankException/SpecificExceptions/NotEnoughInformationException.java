@@ -1,6 +1,6 @@
-package ru.itmo.banks.Tools.BankExceptions.SpecificExceptions;
+package ru.itmo.banks.tool.bankException.SpecificExceptions;
 
-import ru.itmo.banks.Tools.BankExceptions.BankException;
+import ru.itmo.banks.tool.bankException.BankException;
 
 public class NotEnoughInformationException extends BankException {
     public NotEnoughInformationException() {

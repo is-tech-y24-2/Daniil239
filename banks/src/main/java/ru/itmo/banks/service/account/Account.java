@@ -1,7 +1,7 @@
-package ru.itmo.banks.Services.Account;
+package ru.itmo.banks.service.account;
 
-import ru.itmo.banks.Services.Banks.Bank;
-import ru.itmo.banks.Services.Customers.Customer;
+import ru.itmo.banks.service.bank.Bank;
+import ru.itmo.banks.service.customer.Customer;
 
 public class Account extends BankAccount {
 

@@ -2,15 +2,15 @@ package ru.itmo.banks.Banks;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import ru.itmo.banks.Services.Account.AccountType;
-import ru.itmo.banks.Services.Account.Credit;
-import ru.itmo.banks.Services.Account.Debit;
-import ru.itmo.banks.Services.Account.Deposit;
-import ru.itmo.banks.Services.Banks.Bank;
-import ru.itmo.banks.Services.Banks.CentralBank;
-import ru.itmo.banks.Services.Customers.Customer;
-import ru.itmo.banks.Services.Customers.CustomerBuilder;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.*;
+import ru.itmo.banks.service.account.AccountType;
+import ru.itmo.banks.service.account.Credit;
+import ru.itmo.banks.service.account.Debit;
+import ru.itmo.banks.service.account.Deposit;
+import ru.itmo.banks.service.bank.Bank;
+import ru.itmo.banks.service.bank.CentralBank;
+import ru.itmo.banks.service.customer.Customer;
+import ru.itmo.banks.service.customer.CustomerBuilder;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.*;
 
 public class BanksTest {
 

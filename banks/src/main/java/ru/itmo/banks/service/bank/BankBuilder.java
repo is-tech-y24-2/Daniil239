@@ -1,6 +1,6 @@
-package ru.itmo.banks.Services.Banks;
+package ru.itmo.banks.service.bank;
 
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughInformationException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughInformationException;
 
 public class BankBuilder {
     private String name = null;

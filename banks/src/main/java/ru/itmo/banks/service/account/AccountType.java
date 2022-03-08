@@ -1,4 +1,4 @@
-package ru.itmo.banks.Services.Account;
+package ru.itmo.banks.service.account;
 
 public enum AccountType {
     Debit,

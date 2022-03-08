@@ -1,12 +1,12 @@
-package ru.itmo.banks.Services.Account;
+package ru.itmo.banks.service.account;
 
-import ru.itmo.banks.Services.Banks.Bank;
-import ru.itmo.banks.Services.Customers.Customer;
-import ru.itmo.banks.Services.Transaction;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExecutedException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotReliableException;
+import ru.itmo.banks.service.bank.Bank;
+import ru.itmo.banks.service.customer.Customer;
+import ru.itmo.banks.service.Transaction;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.AlreadyExecutedException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotReliableException;
 
 public class Credit extends Account implements IPaymentable, ISleepDay {
 

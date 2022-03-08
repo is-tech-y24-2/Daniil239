@@ -1,6 +1,6 @@
-package ru.itmo.banks.Services.Account;
+package ru.itmo.banks.service.account;
 
-import ru.itmo.banks.Services.Banks.Bank;
+import ru.itmo.banks.service.bank.Bank;
 
 public class BankAccount {
     private final Bank bank;

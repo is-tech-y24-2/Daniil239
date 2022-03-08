@@ -1,4 +1,4 @@
-package ru.itmo.banks.Tools.BankExceptions;
+package ru.itmo.banks.tool.bankException;
 
 public class BankException extends Exception {
     public BankException() {

@@ -1,17 +1,17 @@
 package ru.itmo.banks;
 
-import ru.itmo.banks.Services.Account.AccountType;
-import ru.itmo.banks.Services.Account.Credit;
-import ru.itmo.banks.Services.Account.Debit;
-import ru.itmo.banks.Services.Account.Deposit;
-import ru.itmo.banks.Services.Banks.Bank;
-import ru.itmo.banks.Services.Banks.CentralBank;
-import ru.itmo.banks.Services.Customers.Customer;
-import ru.itmo.banks.Services.Customers.CustomerBuilder;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.AlreadyExistException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.IllegalOperationException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughInformationException;
-import ru.itmo.banks.Tools.BankExceptions.SpecificExceptions.NotEnoughMoneyException;
+import ru.itmo.banks.service.account.AccountType;
+import ru.itmo.banks.service.account.Credit;
+import ru.itmo.banks.service.account.Debit;
+import ru.itmo.banks.service.account.Deposit;
+import ru.itmo.banks.service.bank.Bank;
+import ru.itmo.banks.service.bank.CentralBank;
+import ru.itmo.banks.service.customer.Customer;
+import ru.itmo.banks.service.customer.CustomerBuilder;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.AlreadyExistException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughInformationException;
+import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
