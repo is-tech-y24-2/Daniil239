@@ -8,11 +8,12 @@ import ru.itmo.banks.tool.bankException.BankException;
 import ru.itmo.banks.tool.bankException.SpecificExceptions.DoesNotExistException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
-    private final ArrayList<Credit> credits;
-    private final ArrayList<Debit> debits;
-    private final ArrayList<Deposit> deposits;
+    private final List<Credit> credits;
+    private final List<Debit> debits;
+    private final List<Deposit> deposits;
     private final String name;
     private final String secondName;
     private String address;
@@ -37,15 +38,15 @@ public class Customer {
         return secondName;
     }
 
-    public ArrayList<Credit> getCredits() {
+    public List<Credit> getCredits() {
         return credits;
     }
 
-    public ArrayList<Debit> getDebits() {
+    public List<Debit> getDebits() {
         return debits;
     }
 
-    public ArrayList<Deposit> getDeposits() {
+    public List<Deposit> getDeposits() {
         return deposits;
     }
 

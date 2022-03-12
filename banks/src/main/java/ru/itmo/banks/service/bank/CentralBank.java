@@ -4,11 +4,12 @@ import ru.itmo.banks.service.Transaction;
 import ru.itmo.banks.tool.bankException.SpecificExceptions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CentralBank {
 
-    private final ArrayList<Transaction> transactions;
-    private final ArrayList<Bank> banks = new ArrayList<Bank>();
+    private final List<Transaction> transactions;
+    private final List<Bank> banks = new ArrayList<Bank>();
     public String name;
     public int dayPerMonth;
 
@@ -18,7 +19,7 @@ public class CentralBank {
         dayPerMonth = 0;
     }
 
-    public ArrayList<Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
@@ -26,7 +27,7 @@ public class CentralBank {
         return name;
     }
 
-    public ArrayList<Bank> getBanks() {
+    public List<Bank> getBanks() {
         return banks;
     }
 

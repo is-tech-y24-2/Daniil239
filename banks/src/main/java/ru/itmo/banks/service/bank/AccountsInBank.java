@@ -6,14 +6,15 @@ import ru.itmo.banks.service.account.Deposit;
 import ru.itmo.banks.service.customer.Customer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AccountsInBank {
-    private final ArrayList<Customer> creditCustomers;
-    private final ArrayList<Customer> debitCustomers;
-    private final ArrayList<Customer> depositCustomers;
-    private final ArrayList<Credit> credits;
-    private final ArrayList<Debit> debits;
-    private final ArrayList<Deposit> deposits;
+    private final List<Customer> creditCustomers;
+    private final List<Customer> debitCustomers;
+    private final List<Customer> depositCustomers;
+    private final List<Credit> credits;
+    private final List<Debit> debits;
+    private final List<Deposit> deposits;
 
     public AccountsInBank() {
         credits = new ArrayList<Credit>();
@@ -24,27 +25,27 @@ public class AccountsInBank {
         depositCustomers = new ArrayList<Customer>();
     }
 
-    public ArrayList<Deposit> getDeposits() {
+    public List<Deposit> getDeposits() {
         return deposits;
     }
 
-    public ArrayList<Debit> getDebits() {
+    public List<Debit> getDebits() {
         return debits;
     }
 
-    public ArrayList<Credit> getCredits() {
+    public List<Credit> getCredits() {
         return credits;
     }
 
-    public ArrayList<Customer> getCreditCustomers() {
+    public List<Customer> getCreditCustomers() {
         return creditCustomers;
     }
 
-    public ArrayList<Customer> getDebitCustomers() {
+    public List<Customer> getDebitCustomers() {
         return debitCustomers;
     }
 
-    public ArrayList<Customer> getDepositCustomers() {
+    public List<Customer> getDepositCustomers() {
         return depositCustomers;
     }
 

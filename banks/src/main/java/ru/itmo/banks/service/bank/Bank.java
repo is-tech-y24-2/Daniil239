@@ -9,15 +9,16 @@ import ru.itmo.banks.tool.bankException.SpecificExceptions.IllegalOperationExcep
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Bank {
 
     private final AccountsInBank accounts = new AccountsInBank();
     private final BankAccount bankAccount;
     private final String name;
-    private final ArrayList<Transaction> transactions;
+    private final List<Transaction> transactions;
     private final int notReliableMaxTransactionMoney;
-    private final ArrayList<Customer> subscribers;
+    private final List<Customer> subscribers;
     private float debitBalanceInterest;
     private float depositBalanceInterest;
     private int creditLimit;
@@ -42,11 +43,11 @@ public class Bank {
         return bankAccount;
     }
 
-    public ArrayList<Customer> getSubscribers() {
+    public List<Customer> getSubscribers() {
         return subscribers;
     }
 
-    public ArrayList<Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
