@@ -14,13 +14,14 @@ import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughInformationE
 import ru.itmo.banks.tool.bankException.SpecificExceptions.NotEnoughMoneyException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) throws NotEnoughInformationException, AlreadyExistException, NotEnoughMoneyException, IllegalOperationException {
 
-        ArrayList<Bank> banks = new ArrayList<Bank>();
-        ArrayList<Customer> customers = new ArrayList<Customer>();
+        List<Bank> banks = new ArrayList<Bank>();
+        List<Customer> customers = new ArrayList<Customer>();
 
         Scanner in = new Scanner(System.in);
         String request;
