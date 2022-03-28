@@ -1,4 +1,4 @@
-package ru.itmo.entity;
+package ru.itmo.kotiki.entity;
 
 import javax.persistence.*;
 

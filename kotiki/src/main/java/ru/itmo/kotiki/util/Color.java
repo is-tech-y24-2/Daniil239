@@ -1,4 +1,4 @@
-package ru.itmo.util;
+package ru.itmo.kotiki.util;
 
 public enum Color {
     Grey,

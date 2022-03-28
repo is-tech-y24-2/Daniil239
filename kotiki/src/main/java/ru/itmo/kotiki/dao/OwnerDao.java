@@ -1,6 +1,6 @@
-package ru.itmo.dao;
+package ru.itmo.kotiki.dao;
 
-import ru.itmo.entity.Owner;
+import ru.itmo.kotiki.entity.Owner;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package ru.itmo.entity;
+package ru.itmo.kotiki.entity;
 
-import ru.itmo.util.Color;
+import ru.itmo.kotiki.util.Color;
 
 import javax.persistence.*;
 
@@ -24,7 +24,8 @@ public class Cat {
     @Column
     private Date birthday;
 
-    @Column (name="color_id")
+    @Column (name="color")
+    @Enumerated(EnumType.STRING)
     private Color color;
 
     @ManyToOne(fetch = FetchType.LAZY)

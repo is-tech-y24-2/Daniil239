@@ -1,7 +1,7 @@
-package ru.itmo.util;
+package ru.itmo.kotiki.util;
 
-import ru.itmo.entity.Cat;
-import ru.itmo.entity.Owner;
+import ru.itmo.kotiki.entity.Cat;
+import ru.itmo.kotiki.entity.Owner;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

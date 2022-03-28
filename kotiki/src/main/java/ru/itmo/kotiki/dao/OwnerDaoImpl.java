@@ -1,61 +1,62 @@
-package ru.itmo.dao;
+package ru.itmo.kotiki.dao;
 
-import ru.itmo.entity.Cat;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import ru.itmo.util.HibernateSessionFactoryUtil;
-
+import ru.itmo.kotiki.entity.Owner;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import ru.itmo.kotiki.util.HibernateSessionFactoryUtil;
+
 import java.util.List;
 
-public class CatDaoImpl implements CatDao{
+public class OwnerDaoImpl implements OwnerDao{
+
     @Override
-    public Cat findById(int id) {
+    public Owner findById(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Cat cat = session.get(Cat.class, id);
+        Owner owner = session.get(Owner.class, id);
         session.close();
-        return cat;
+        return owner;
     }
 
     @Override
-    public void save(Cat cat) {
+    public void save(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(cat);
+        session.save(owner);
         transaction.commit();
         session.close();
     }
 
     @Override
-    public void update(Cat cat) {
+    public void update(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(cat);
+        session.update(owner);
         transaction.commit();
         session.close();
     }
 
     @Override
-    public void delete(Cat cat) {
+    public void delete(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(cat);
+        session.delete(owner);
         transaction.commit();
         session.close();
     }
 
     @Override
-    public List<Cat> findAll() {
+    public List<Owner> findAll() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Cat> cr = cb.createQuery(Cat.class);
-        Root<Cat> root = cr.from(Cat.class);
+        CriteriaQuery<Owner> cr = cb.createQuery(Owner.class);
+        Root<Owner> root = cr.from(Owner.class);
         cr.select(root);
-        Query<Cat> query = session.createQuery(cr);
-        List<Cat> results = query.getResultList();
+        Query<Owner> query = session.createQuery(cr);
+        List<Owner> results = query.getResultList();
         session.close();
         return results;
     }
