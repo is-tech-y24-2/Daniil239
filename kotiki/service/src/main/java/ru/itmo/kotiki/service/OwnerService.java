@@ -2,8 +2,8 @@ package ru.itmo.kotiki.service;
 
 import ru.itmo.kotiki.dao.CatDaoImpl;
 import ru.itmo.kotiki.dao.OwnerDaoImpl;
-import ru.itmo.kotiki.entity.Cat;
-import ru.itmo.kotiki.entity.Owner;
+import ru.itmo.kotiki.dao.entity.Cat;
+import ru.itmo.kotiki.dao.entity.Owner;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package ru.itmo.kotiki.dao;
 
-import ru.itmo.kotiki.entity.Owner;
+import ru.itmo.kotiki.dao.entity.Owner;
 
 import java.util.List;
 

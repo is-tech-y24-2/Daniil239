@@ -1,6 +1,4 @@
-package ru.itmo.kotiki.entity;
-
-import ru.itmo.kotiki.util.Color;
+package ru.itmo.kotiki.dao.entity;
 
 import javax.persistence.*;
 

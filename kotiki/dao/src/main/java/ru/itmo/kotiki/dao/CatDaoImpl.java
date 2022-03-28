@@ -1,9 +1,9 @@
 package ru.itmo.kotiki.dao;
 
-import ru.itmo.kotiki.entity.Cat;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import ru.itmo.kotiki.dao.entity.Cat;
 import ru.itmo.kotiki.util.HibernateSessionFactoryUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;

@@ -1,10 +1,12 @@
 package ru.itmo.kotiki.util;
 
-import ru.itmo.kotiki.entity.Cat;
-import ru.itmo.kotiki.entity.Owner;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import ru.itmo.kotiki.dao.entity.Cat;
+import ru.itmo.kotiki.dao.entity.Owner;
+
+import java.awt.*;
 
 public class HibernateSessionFactoryUtil {
 

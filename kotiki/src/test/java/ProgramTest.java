@@ -1,10 +1,10 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import ru.itmo.kotiki.entity.Cat;
-import ru.itmo.kotiki.entity.Owner;
+import ru.itmo.kotiki.dao.entity.Cat;
+import ru.itmo.kotiki.dao.entity.Color;
+import ru.itmo.kotiki.dao.entity.Owner;
 import ru.itmo.kotiki.service.ManagerService;
 import ru.itmo.kotiki.service.OwnerService;
-import ru.itmo.kotiki.util.Color;
 
 import java.sql.Date;
 
