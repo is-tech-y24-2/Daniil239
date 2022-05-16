@@ -18,5 +18,5 @@ public interface CatDao extends CrudRepository<Cat, Integer> {
 
     Cat findByName(String name);
 
-    List<Cat> findAllByColor(Color color);
+    List<Cat> findAllByColorAndOwnerId(Color color, Integer ownerId);
 }

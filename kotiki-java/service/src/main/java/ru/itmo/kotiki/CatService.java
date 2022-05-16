@@ -65,24 +65,9 @@ public class CatService {
                 .toList();
     }
 
-    public List<CatDto> findAllCatsBy(String color) {
-
-        return findAllCats()
-                .stream()
-                .filter(cat -> cat.getColor().equals(Color.valueOf(color.toUpperCase())))
-                .map(cat -> CatDto.builder()
-                        .id(cat.getId())
-                        .breed(cat.getBreed())
-                        .name(cat.getName())
-                        .birthday(cat.getBirthday())
-                        .color(cat.getColor())
-                        .build())
-                .toList();
-    }
-
     public List<CatDto> findAllCatsByColorAndOwnerId(String color, int ownerId) {
 
-        return catDao.findAllByColor(Color.valueOf(color.toUpperCase()))
+        return catDao.findAllByColorAndOwnerId(Color.valueOf(color.toUpperCase()), ownerId)
                 .stream()
                 .map(cat -> CatDto.builder()
                         .id(cat.getId())
