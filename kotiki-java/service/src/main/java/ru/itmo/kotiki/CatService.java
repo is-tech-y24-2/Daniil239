@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 @Service
-public class CatService implements ICatService {
+public class CatService {
 
     private final CatDao catDao;
 
@@ -20,7 +20,6 @@ public class CatService implements ICatService {
         this.catDao = catDao;
     }
 
-    @Override
     public CatDto findCat(int id) {
         Cat cat = catDao.findById(id).get();
         return map(cat);
@@ -31,28 +30,23 @@ public class CatService implements ICatService {
         return map(cat);
     }
 
-    @Override
     public CatDto findCatByName(String name) {
         Cat cat = catDao.findByName(name);
         return map(cat);
     }
 
-    @Override
     public void saveCat(Cat cat) {
         catDao.save(cat);
     }
 
-    @Override
     public void updateCat(Cat cat) {
         catDao.save(cat);
     }
 
-    @Override
     public void deleteCat(Cat cat) {
         catDao.delete(cat);
     }
 
-    @Override
     public List<CatDto> findAllCats() {
         List<Cat> casts = StreamSupport.stream(catDao.findAll().spliterator(), false).toList();
 
@@ -71,11 +65,11 @@ public class CatService implements ICatService {
                 .toList();
     }
 
-    @Override
     public List<CatDto> findAllCatsBy(String color) {
 
-        return catDao.findAllByColor(Color.valueOf(color.toUpperCase()))
+        return findAllCats()
                 .stream()
+                .filter(cat -> cat.getColor().equals(Color.valueOf(color.toUpperCase())))
                 .map(cat -> CatDto.builder()
                         .id(cat.getId())
                         .breed(cat.getBreed())
@@ -88,9 +82,8 @@ public class CatService implements ICatService {
 
     public List<CatDto> findAllCatsByColorAndOwnerId(String color, int ownerId) {
 
-        return findAllCatsByOwnerId(ownerId)
+        return catDao.findAllByColor(Color.valueOf(color.toUpperCase()))
                 .stream()
-                .filter(cat -> cat.getColor().equals(Color.valueOf(color.toUpperCase())))
                 .map(cat -> CatDto.builder()
                         .id(cat.getId())
                         .breed(cat.getBreed())

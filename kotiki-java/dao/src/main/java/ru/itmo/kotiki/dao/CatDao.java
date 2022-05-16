@@ -9,6 +9,8 @@ import java.util.List;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface CatDao extends CrudRepository<Cat, Integer> {
     List<Cat> findAllByOwnerId(int ownerId);
 

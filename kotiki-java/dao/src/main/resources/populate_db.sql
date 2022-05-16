@@ -15,3 +15,11 @@ values ('ADMIN'),
 insert into users (name, password, enabled, role_id, owner_id)
 VALUES ('elvis', 'password', true, (SELECT id FROM roles WHERE roles.name = 'USER'), (SELECT min(id) FROM owners)),
        ('kenedy', 'password', true, (SELECT id FROM roles WHERE roles.name = 'ADMIN'), (SELECT max(id) FROM owners));
+
+insert into roles (name)
+values ('ADMIN'),
+       ('USER');
+
+insert into users (name, password, enabled, role_id, owner_id)
+VALUES ('elvis', 'password', true, (SELECT id FROM roles WHERE roles.name = 'USER'), (SELECT min(id) FROM owners)),
+       ('kenedy', 'password', true, (SELECT id FROM roles WHERE roles.name = 'ADMIN'), (SELECT max(id) FROM owners));

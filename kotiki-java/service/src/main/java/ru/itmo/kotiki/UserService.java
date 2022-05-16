@@ -2,6 +2,7 @@ package ru.itmo.kotiki.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.itmo.kotiki.OwnerService;
 import ru.itmo.kotiki.dao.RoleDao;
 import ru.itmo.kotiki.dao.UserDao;
 import ru.itmo.kotiki.dao.entity.Owner;

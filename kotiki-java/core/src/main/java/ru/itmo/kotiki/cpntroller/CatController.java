@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.itmo.kotiki.ICatService;
+import ru.itmo.kotiki.CatService;
 import ru.itmo.kotiki.dto.CatDto;
 import ru.itmo.kotiki.service.dto.MyUserDetails;
 
@@ -19,12 +19,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CatController {
 
-    private final ICatService catService;
+    private final CatService catService;
 
     @GetMapping
     public ResponseEntity<List<CatDto>> getAll() {
         MyUserDetails myUserDetails = (MyUserDetails) (SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         int ownerId = myUserDetails.getUser().getOwner().getId();
+
         List<CatDto> allCats = catService.findAllCatsByOwnerId(ownerId);
         return ResponseEntity.ok(allCats);
     }

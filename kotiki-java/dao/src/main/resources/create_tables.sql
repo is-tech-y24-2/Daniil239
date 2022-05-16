@@ -53,3 +53,25 @@ CREATE TABLE users
     role_id int,
     owner_id int
 )
+CREATE TABLE roles
+(
+    id   serial
+        constraint roles_pk
+            primary key,
+    name varchar(45) NOT NULL
+);
+
+alter table roles
+    owner to postgres;
+
+CREATE TABLE users
+(
+    id       serial
+        constraint users_pk
+            primary key,
+    name     varchar(45) NOT NULL,
+    password varchar(64) NOT NULL,
+    enabled  bool,
+    role_id int,
+    owner_id int
+)
