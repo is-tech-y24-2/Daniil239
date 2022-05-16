@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.itmo.kotiki.CatService;
+import ru.itmo.kotiki.ICatService;
 import ru.itmo.kotiki.dto.CatDto;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CatController {
 
-    private final CatService catService;
+    private final ICatService catService;
 
     @GetMapping
     public ResponseEntity<List<CatDto>> getAll() {
