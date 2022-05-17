@@ -41,7 +41,7 @@ public class RabbitCatConsumer {
     }
 
     private String filterBy(String color, Integer ownerId) throws JsonProcessingException {
-        List<Cat> cats = catDao.findAllByOwnerId(ownerId).stream().filter(it -> it.getColor().equals(Color.valueOf(color.toUpperCase()))).toList();
+        List<Cat> cats = catDao.findAllByColorAndOwnerId(Color.valueOf(color.toUpperCase()),ownerId);;
         return objectMapper.writeValueAsString(cats.stream().map(this::map).toList());
     }
 

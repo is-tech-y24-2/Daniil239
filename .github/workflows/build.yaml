@@ -32,4 +32,4 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Build with Maven
-        run: mvn -f kotiki-java/pom.xml -B clean test
+        run: mvn -f kotiki-java/kotiki-web/pom.xml -B clean test
