@@ -1,7 +1,4 @@
-package ru.itmo.kotiki.service.dto;
-
-import ru.itmo.kotiki.dao.entity.Roles;
+package ru.itmo.kotiki.dto;
 
 public record UserResponseMessage(String name, String password, boolean enabled, Roles role, Integer ownerId) {
-
 }

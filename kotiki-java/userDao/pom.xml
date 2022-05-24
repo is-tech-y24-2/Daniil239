@@ -50,6 +50,13 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>ru.itmo.kotiki</groupId>
+            <artifactId>kotiki-protocol</artifactId>
+            <version>1.0</version>
+        </dependency>
+        
     </dependencies>
 
 </project>

@@ -4,8 +4,8 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.itmo.kotiki.cpntroller.dto.Roles;
-import ru.itmo.kotiki.cpntroller.dto.UserResponseMessage;
+import ru.itmo.kotiki.dto.Roles;
+import ru.itmo.kotiki.dto.UserResponseMessage;
 
 import java.util.ArrayList;
 import java.util.Collection;

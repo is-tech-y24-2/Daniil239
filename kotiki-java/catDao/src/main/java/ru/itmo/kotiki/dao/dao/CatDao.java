@@ -3,11 +3,7 @@ package ru.itmo.kotiki.dao.dao;
 
 import org.springframework.data.repository.CrudRepository;
 import ru.itmo.kotiki.dao.entity.Cat;
-import ru.itmo.kotiki.dao.entity.Color;
-
-import java.util.List;
-
-import java.util.List;
+import ru.itmo.kotiki.dto.Color;
 
 import java.util.List;
 

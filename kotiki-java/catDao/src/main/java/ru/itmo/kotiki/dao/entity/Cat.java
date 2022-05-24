@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import ru.itmo.kotiki.dto.Color;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

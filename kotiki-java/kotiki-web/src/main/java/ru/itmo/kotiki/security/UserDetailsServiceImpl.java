@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import ru.itmo.kotiki.cpntroller.dto.OperationType;
-import ru.itmo.kotiki.cpntroller.dto.RabbitOwnerMessage;
-import ru.itmo.kotiki.cpntroller.dto.UserResponseMessage;
+import ru.itmo.kotiki.dto.OperationType;
+import ru.itmo.kotiki.dto.RabbitOwnerMessage;
+import ru.itmo.kotiki.dto.UserResponseMessage;
 
 
 public class UserDetailsServiceImpl implements UserDetailsService {

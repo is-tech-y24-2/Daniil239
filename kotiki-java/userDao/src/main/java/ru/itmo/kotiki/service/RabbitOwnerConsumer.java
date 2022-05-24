@@ -10,12 +10,8 @@ import ru.itmo.kotiki.dao.OwnerDao;
 import ru.itmo.kotiki.dao.RoleDao;
 import ru.itmo.kotiki.dao.UserDao;
 import ru.itmo.kotiki.dao.entity.Owner;
-import ru.itmo.kotiki.dao.entity.Roles;
 import ru.itmo.kotiki.dao.entity.User;
-import ru.itmo.kotiki.service.dto.AuthUser;
-import ru.itmo.kotiki.service.dto.RabbitOwnerMessage;
-import ru.itmo.kotiki.service.dto.UserResponseMessage;
-import ru.itmo.kotiki.dto.OwnerDto;
+import ru.itmo.kotiki.dto.*;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
@@ -56,17 +52,18 @@ public class RabbitOwnerConsumer {
     private String getUserByName(String username) throws JsonProcessingException {
         User user = userDao.findByName(username);
 
-        return objectMapper.writeValueAsString(new UserResponseMessage(user.getName(), user.getPassword(), user.isEnabled(), user.getRole().getName(), user.getOwner().getId()));
+        String entityRole = user.getRole().getName().toString();
+        return objectMapper.writeValueAsString(new UserResponseMessage(user.getName(), user.getPassword(), user.isEnabled(), Roles.valueOf(entityRole), user.getOwner().getId()));
     }
 
     private String create(AuthUser user) throws JsonProcessingException {
 
         try {
-            userDao.save(new User(user.getName(),
-                    user.getPassword(),
-                    user.isEnabled(),
-                    roleDao.findByName(Roles.valueOf(user.getRole())),
-                    new Owner(user.getFullName(), user.getBirthday())));
+            userDao.save(new User(user.name(),
+                    user.password(),
+                    user.enabled(),
+                    roleDao.findByName(Roles.valueOf(user.role())),
+                    new Owner(user.fullName(), user.birthday())));
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -97,10 +94,9 @@ public class RabbitOwnerConsumer {
     }
 
     private OwnerDto map(Owner owner) {
-        return OwnerDto.builder()
-                .id(owner.getId())
-                .name(owner.getName())
-                .birthday(owner.getBirthday())
-                .build();
+        return new OwnerDto(
+                owner.getId(),
+                owner.getName(),
+                owner.getBirthday());
     }
 }

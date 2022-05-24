@@ -1,4 +1,4 @@
-package ru.itmo.kotiki.cpntroller.dto;
+package ru.itmo.kotiki.dto;
 
 public enum OperationType {
     GET_ALL,

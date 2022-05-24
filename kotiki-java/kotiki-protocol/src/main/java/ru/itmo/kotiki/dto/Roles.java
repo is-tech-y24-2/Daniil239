@@ -1,4 +1,4 @@
-package ru.itmo.kotiki.dao.entity;
+package ru.itmo.kotiki.dto;
 
 public enum Roles {
     ADMIN,

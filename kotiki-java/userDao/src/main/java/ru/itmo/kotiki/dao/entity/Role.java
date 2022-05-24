@@ -3,6 +3,7 @@ package ru.itmo.kotiki.dao.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itmo.kotiki.dto.Roles;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

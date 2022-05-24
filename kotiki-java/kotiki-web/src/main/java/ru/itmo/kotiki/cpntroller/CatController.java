@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.itmo.kotiki.cpntroller.dto.CatDto;
-import ru.itmo.kotiki.cpntroller.dto.OperationType;
-import ru.itmo.kotiki.cpntroller.dto.RabbitCatMessage;
+
+import ru.itmo.kotiki.dto.CatDto;
+import ru.itmo.kotiki.dto.OperationType;
+import ru.itmo.kotiki.dto.RabbitCatMessage;
 import ru.itmo.kotiki.security.MyUserDetails;
 
 import java.util.List;

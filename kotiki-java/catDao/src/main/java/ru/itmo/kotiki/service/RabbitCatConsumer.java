@@ -7,9 +7,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 import ru.itmo.kotiki.dao.dao.CatDao;
 import ru.itmo.kotiki.dao.entity.Cat;
-import ru.itmo.kotiki.dao.entity.Color;
-import ru.itmo.kotiki.service.dto.RabbitCatMessage;
 import ru.itmo.kotiki.dto.CatDto;
+import ru.itmo.kotiki.dto.Color;
+import ru.itmo.kotiki.dto.RabbitCatMessage;
 
 import java.util.List;
 
@@ -62,12 +62,11 @@ public class RabbitCatConsumer {
 
     private CatDto map(Cat cat) {
 
-        return cat == null ? CatDto.builder().build() : CatDto.builder()
-                .id(cat.getId())
-                .breed(cat.getBreed())
-                .name(cat.getName())
-                .birthday(cat.getBirthday())
-                .color(cat.getColor())
-                .build();
+        return cat == null ? null : new CatDto(
+                cat.getId(),
+                cat.getBreed(),
+                cat.getName(),
+                cat.getBirthday(),
+                cat.getColor());
     }
 }
